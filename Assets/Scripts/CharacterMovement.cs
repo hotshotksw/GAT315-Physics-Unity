@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float pushPower = 2.0f;
     [SerializeField] float rotationSpeed = 3.0f;
     [SerializeField] Transform view;
+    [SerializeField] Animator animator;
     
     private CharacterController controller;
     private Vector3 velocity;
@@ -28,9 +29,15 @@ public class CharacterMovement : MonoBehaviour
         if (onGround && velocity.y < 0)
         {
             velocity.y = 0f;
+
+            animator.SetBool("OnGround", true);
+            animator.SetFloat("YVelocity", velocity.y);
         }
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        animator.SetFloat("Speed", move.z);
+
         move = Vector3.ClampMagnitude(move, 1);
         // view space
         move = Quaternion.Euler(0, view.rotation.eulerAngles.y, 0) * move;
@@ -47,9 +54,11 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButton("Jump") && onGround)
         {
             velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * Physics.gravity.y);
+            animator.SetBool("OnGround", false);
         }
 
         velocity.y += Physics.gravity.y * Time.deltaTime;
+        animator.SetFloat("YVelocity", velocity.y);
         controller.Move(velocity * Time.deltaTime);
     }
     
