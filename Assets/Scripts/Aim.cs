@@ -5,7 +5,8 @@ using UnityEngine;
 public class Aim : MonoBehaviour
 {
     [SerializeField] float speed = 3;
-    [SerializeField] Transform center;
+    [SerializeField] float yawLimit = 50;
+    [SerializeField] float pitchLimit = 50;
 
     Vector3 rotation = Vector3.zero;
 
@@ -24,14 +25,12 @@ public class Aim : MonoBehaviour
         rotation.x += axis.x * speed;
         rotation.y += axis.y * speed;
 
-        rotation.x = Mathf.Clamp(rotation.x, -50, 50);
-        //rotation.y = Mathf.Clamp(rotation.y, -70, 70);
+        rotation.x = Mathf.Clamp(rotation.x, -pitchLimit, pitchLimit);
+        rotation.y = Mathf.Clamp(rotation.y, -yawLimit, yawLimit);
 
         Quaternion qyaw = Quaternion.AngleAxis(rotation.y, Vector3.up);
         Quaternion qpitch = Quaternion.AngleAxis(rotation.x, Vector3.right);
 
         transform.localRotation = qyaw * qpitch;
-
-        transform.RotateAround(center.transform.position, Vector3.up, 30 * -Input.GetAxis("Horizontal") * Time.deltaTime);
     }
 }

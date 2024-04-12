@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
@@ -13,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 3.0f;
     [SerializeField] Transform view;
     [SerializeField] Animator animator;
+    [SerializeField] Rig rig;
     
     private CharacterController controller;
     private Vector3 velocity;
@@ -21,6 +23,7 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        rig.weight = (animator.GetBool("Equipped")) ? 1 : 0;
     }
 
     void Update()
@@ -30,13 +33,13 @@ public class CharacterMovement : MonoBehaviour
         {
             velocity.y = 0f;
 
-            animator.SetBool("OnGround", true);
-            animator.SetFloat("YVelocity", velocity.y);
+            //animator.SetBool("OnGround", true);
+            //animator.SetFloat("YVelocity", velocity.y);
         }
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        animator.SetFloat("Speed", move.z);
+        //animator.SetFloat("Speed", move.z);
 
         move = Vector3.ClampMagnitude(move, 1);
         // view space
@@ -54,12 +57,21 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButton("Jump") && onGround)
         {
             velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * Physics.gravity.y);
-            animator.SetBool("OnGround", false);
         }
 
         velocity.y += Physics.gravity.y * Time.deltaTime;
-        animator.SetFloat("YVelocity", velocity.y);
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            animator.SetBool("Equipped", !animator.GetBool("Equipped"));
+            rig.weight =  (animator.GetBool("Equipped")) ? 1 : 0;
+        }
+
+        //animations
+        animator.SetFloat("Speed", move.magnitude * speed);
+        animator.SetFloat("YVelocity", velocity.y);
+        animator.SetBool("OnGround", onGround);
     }
     
     void OnControllerColliderHit(ControllerColliderHit hit)
