@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.1806654, g: 0.22617054, b: 0.30712903, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -890,6 +890,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4764293196696219720, guid: ad36c3d044d312e44a986a07f2c7f0b2,
     type: 3}
   m_PrefabInstance: {fileID: 1160280243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &161217768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8391225492652592407, guid: 10240f0f0338c534e97dfa6606931777,
+    type: 3}
+  m_PrefabInstance: {fileID: 1742309844}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &166475413
 PrefabInstance:
@@ -2052,25 +2058,19 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1777327536}
   m_SourcePrefab: {fileID: 100100000, guid: ad36c3d044d312e44a986a07f2c7f0b2, type: 3}
---- !u!1 &337991978 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8391225492652592407, guid: 10240f0f0338c534e97dfa6606931777,
-    type: 3}
-  m_PrefabInstance: {fileID: 1742309844}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &337991981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7126722313207681046, guid: 10240f0f0338c534e97dfa6606931777,
     type: 3}
   m_PrefabInstance: {fileID: 1742309844}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &337991982
+--- !u!136 &337991984
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337991978}
+  m_GameObject: {fileID: 161217768}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2083,10 +2083,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.66
+  m_Radius: 0.62
   m_Height: 4.23
   m_Direction: 2
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &341448717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3890,7 +3890,7 @@ Cloth:
   - maxDistance: 3.4028235e+38
     collisionSphereDistance: 3.4028235e+38
   m_CapsuleColliders:
-  - {fileID: 337991982}
+  - {fileID: 337991984}
   m_SphereColliders: []
   m_SelfCollisionDistance: 0
   m_SelfCollisionStiffness: 0.2
@@ -7971,7 +7971,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8391225492652592407, guid: 10240f0f0338c534e97dfa6606931777,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 337991982}
+      addedObject: {fileID: 337991984}
     - targetCorrespondingSourceObject: {fileID: 6319561796024010696, guid: 10240f0f0338c534e97dfa6606931777,
         type: 3}
       insertIndex: -1

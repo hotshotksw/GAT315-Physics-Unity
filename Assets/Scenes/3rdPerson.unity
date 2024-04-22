@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c156fc2ed0c303f4a826e8fe65725ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 2665067058064253926, guid: 267744c7cf265894389ccc4bc4dd0dda, type: 3}
+  ammo: {fileID: 9164585320589521221, guid: c4c125fcd34cf314bbfa92165bd91b25, type: 3}
   emission: {fileID: 1406344097}
   fireRate: 0
   audioSource: {fileID: 0}
